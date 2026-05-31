@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>{% if score %}编辑成绩{% else %}添加成绩{% endif %}</h2>
+<form method="POST" class="row g-3 mt-2">
+    <div class="col-md-4">
+        <label class="form-label">学生</label>
+        <select name="student_id" class="form-select" required>
+            <option value="">请选择学生</option>
+            {% for s in students %}
+            <option value="{{ s.id }}" {% if score and score.student_id == s.id %}selected{% endif %}>{{ s.student_id }} {{ s.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">课程</label>
+        <select name="course_id" class="form-select" required>
+            <option value="">请选择课程</option>
+            {% for c in courses %}
+            <option value="{{ c.id }}" {% if score and score.course_id == c.id %}selected{% endif %}>{{ c.course_id }} {{ c.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">分数</label>
+        <input type="number" step="0.1" name="score" class="form-control" min="0" max="100" value="{{ score.score if score else '' }}" required>
+    </div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-success">保存</button>
+        <a href="{{ url_for('score_list') }}" class="btn btn-secondary">返回</a>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="mb-4">系统仪表盘</h1>
+<div class="row text-center">
+    <div class="col-md-3">
+        <div class="card bg-primary text-white mb-3">
+            <div class="card-body">
+                <h5 class="card-title">学生总数</h5>
+                <h2>{{ student_count }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-success text-white mb-3">
+            <div class="card-body">
+                <h5 class="card-title">课程总数</h5>
+                <h2>{{ course_count }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-warning text-white mb-3">
+            <div class="card-body">
+                <h5 class="card-title">成绩记录数</h5>
+                <h2>{{ score_count }}</h2>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="card bg-info text-white mb-3">
+            <div class="card-body">
+                <h5 class="card-title">整体平均分</h5>
+                <h2>{{ avg_score }}</h2>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

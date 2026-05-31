@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>学生管理</h2>
+    <a href="{{ url_for('student_add') }}" class="btn btn-primary">添加学生</a>
+</div>
+<table class="table table-striped table-hover">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>班级</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for stu in students %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ stu.student_id }}</td>
+            <td>{{ stu.name }}</td>
+            <td>{{ stu.class_name }}</td>
+            <td>
+                <a href="{{ url_for('student_edit', id=stu.id) }}" class="btn btn-sm btn-warning">编辑</a>
+                <a href="{{ url_for('student_delete', id=stu.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('确认删除？')">删除</a>
+            </td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" class="text-center">暂无学生数据</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
